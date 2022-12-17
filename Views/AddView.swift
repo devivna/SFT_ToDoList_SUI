@@ -21,7 +21,7 @@ struct AddView: View {
             VStack {
                 TextField("Type something here", text: $textField)
                     .padding()
-                    .background(.brown.opacity(0.2))
+                    .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
                     .padding(.horizontal)
                 
@@ -67,9 +67,18 @@ struct AddView: View {
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            AddView()
-                .environmentObject(ListViewModel())
+        Group {
+            NavigationView {
+                AddView()
+                    .preferredColorScheme(.light)
+                    .environmentObject(ListViewModel())
+            }
+            NavigationView {
+                AddView()
+                    .preferredColorScheme(.dark)
+                    .environmentObject(ListViewModel())
+            }
         }
+        
     }
 }
